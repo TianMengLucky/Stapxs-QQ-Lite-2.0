@@ -22,7 +22,7 @@ import Umami from '@stapxs/umami-logger-typescript'
 
 import { buildMsgList, getMsgData, parseMsgList, getMsgRawTxt, updateLastestHistory, sendMsgAppendInfo } from '@/function/utils/msgUtil'
 import { getViewTime, escape2Html, randomNum } from '@/function/utils/systemUtil'
-import { reloadUsers, reloadCookies, downloadFile, updateMenu, jumpToChat, loadJsonMap, sendStatEvent } from '@/function/utils/appUtil'
+import { reloadUsers, reloadCookies, downloadFile, /* updateMenu, */ jumpToChat, loadJsonMap, sendStatEvent } from '@/function/utils/appUtil'
 import { reactive, markRaw, defineAsyncComponent } from 'vue'
 import { PopInfo, PopType, Logger, LogType } from './base'
 import { Connector, login } from './connect'
@@ -292,7 +292,7 @@ const msgFunctons = {
             runtimeData.loginInfo = data
             login.status = true
             // 显示账户菜单
-            updateMenu({ id: 'userName', action: 'label', value: data.nickname })
+/*             updateMenu({ id: 'userName', action: 'label', value: data.nickname }) */
             // 结束登录页面的水波动画
             clearInterval(runtimeData.tags.loginWaveTimer)
             // 跳转标签卡
@@ -1033,11 +1033,11 @@ function saveUser(msg: { [key: string]: any }, type: string) {
             }
         }
         // 更新菜单
-        updateMenu({
+/*         updateMenu({
             id: 'userList',
             action: 'label',
             value: app.config.globalProperties.$t('用户列表（{count}）', { count: runtimeData.userList.length })
-        })
+        }) */
     }
     // 如果获取次数大于 0 并且是双数，刷新一下历史会话
     if(listLoadTimes > 0 && listLoadTimes % 2 == 0) {
@@ -1375,12 +1375,12 @@ function newMsg(name: string, data: any) {
                 // 发送消息
                 if (Option.get('close_notice') !== true) {
                     if (runtimeData.tags.isElectron) {
-                        if (runtimeData.reader) {
+/*                         if (runtimeData.reader) {
                             // electron：在 windows 下对任务栏图标进行闪烁
                             runtimeData.reader.send('win:flashWindow')
                             // electron：通过 electron 发送消息
                             runtimeData.reader.send('sys:sendNotice', msgInfo)
-                        }
+                        } */
                     } else {
                         // Safari：在 iOS 下，如果页面没有被创建为主屏幕，通知无法被调用
                         // 最见鬼的是它不是方法返回失败，而且整个 Notification 对象都没有
@@ -1401,14 +1401,14 @@ function newMsg(name: string, data: any) {
                     }
                 }
                 // MacOS：刷新 touchbar
-                if (runtimeData.tags.isElectron && runtimeData.reader) {
+/*                 if (runtimeData.tags.isElectron && runtimeData.reader) {
                     runtimeData.reader.send('sys:newMessage', {
                         id: id,
                         image: msgInfo.icon,
                         name: msgInfo.title,
                         msg: raw
                     })
-                }
+                } */
             }
             // 如果发送者不在消息列表里，将它添加到消息列表里
             if (get.length !== 1) {

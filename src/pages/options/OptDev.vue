@@ -235,18 +235,18 @@ export default defineComponent({
             console.log(runtimeData)
             console.log('=========================')
             /* eslint-enable no-console */
-            if (runtimeData.reader) {
+/*             if (runtimeData.reader) {
                 runtimeData.reader.send('win:openDevTools')
-            }
+            } */
         },
         async printVersionInfo() {
             new PopInfo().add(PopType.INFO, app.config.globalProperties.$t('正在收集调试消息……'))
 
             // electron：索要 electron 信息
             let addInfo = undefined
-            if(runtimeData.reader) {
+/*             if(runtimeData.reader) {
                 addInfo = await runtimeData.reader.invoke('opt:getSystemInfo')
-            }
+            } */
 
             const browser = detect() as BrowserInfo
             let info = '```\n'
@@ -279,7 +279,7 @@ export default defineComponent({
                     case 'linux': {
                         // archlinux
                         if((runtimeData.tags.release.toLowerCase()).indexOf('arch') > 0) {
-                            let pacmanInfo = await runtimeData.reader.invoke('sys:runCommand', 'pacman -Q stapxs-qq-lite-bin')
+/*                             let pacmanInfo = await runtimeData.reader.invoke('sys:runCommand', 'pacman -Q stapxs-qq-lite-bin')
                             if(pacmanInfo.success) {
                                 info += '    Install Type     -> aur\n'
                             } else {
@@ -288,7 +288,7 @@ export default defineComponent({
                                 if(pacmanInfo.success) {
                                     info += '    Install Type     -> pacman\n'
                                 }
-                            }
+                            } */
                         }
                         break;
                     }
@@ -416,9 +416,9 @@ export default defineComponent({
                                     .replace(/^ +/, '')
                                     .replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/');
                             })
-                            if (runtimeData.reader) {
+/*                             if (runtimeData.reader) {
                                 runtimeData.reader.sendSync('opt:clearAll')
-                            }
+                            } */
                             location.reload()
                         }
                     },
@@ -432,9 +432,9 @@ export default defineComponent({
             runtimeData.popBoxList.push(popInfo)
         },
         restartapp() {
-            if (runtimeData.reader) {
+/*             if (runtimeData.reader) {
                 runtimeData.reader.send('win:relaunch')
-            }
+            } */
         },
         getBotTypeName(index: BotMsgType) {
             switch (index) {

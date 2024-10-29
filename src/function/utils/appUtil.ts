@@ -73,11 +73,10 @@ export function openLink(url: string, external = false) {
                     {
                         text: app.config.globalProperties.$t('打开…'),
                         fun: () => {
-                            const electron = window.require('electron')
-                            const shell = electron ? electron.shell : null
+/*                             const shell = null
                             if (shell) {
                                 shell.openExternal(url)
-                            }
+                            } */
                             runtimeData.popBoxList.shift()
                         }
                     },
@@ -89,13 +88,13 @@ export function openLink(url: string, external = false) {
                 ]
             }
             runtimeData.popBoxList.push(popInfo)
-        } else {
+        }/*  else {
             const electron = window.require('electron')
             const shell = electron ? electron.shell : null
             if (shell) {
                 shell.openExternal(url)
             }
-        }
+        } */
     } else {
         window.open(url)
     }
@@ -221,7 +220,7 @@ export function downloadFile (url: string, name: string, onprocess: (event: Prog
             }
         })
     } else {
-        if(runtimeData.reader) {
+/*         if(runtimeData.reader) {
             runtimeData.reader.on('sys:downloadBack', (event, params) => {
                 onprocess(params)
             })
@@ -229,7 +228,7 @@ export function downloadFile (url: string, name: string, onprocess: (event: Prog
                 downloadPath: url,
                 fileName: name
             })
-        }
+        } */
     }
 }
 
@@ -306,7 +305,7 @@ function updateGTKTheme(cssStr: string) {
 /**
  * electron：加载系统主题适配
  */
-export async function loadSystemThemeColor() {
+/* export async function loadSystemThemeColor() {
     // 加载 GTK 主题适配（以及主题更新回调监听）
     if (runtimeData.reader) {
         // 主题更新回调
@@ -325,7 +324,7 @@ export async function loadWinColor() {
         // 获取系统主题色
         updateWinColor(await runtimeData.reader.invoke('sys:getWinColor'))
     }
-}
+} */
 
 export function updateWinColor(color: string) {
     if(process.platform == 'win32') {
@@ -350,7 +349,7 @@ export function updateWinColor(color: string) {
     }
 }
 
-export function createMenu() {
+/* export function createMenu() {
     const { $t } = app.config.globalProperties
     // MacOS：初始化菜单
     if (runtimeData.reader) {
@@ -456,7 +455,7 @@ export function createIpc() {
             Connector.onclose(data.code, data.reason, data.address, data.token)
         })
     }
-}
+} */
 
 export function loadAppendStyle() {
     const platform = runtimeData.tags.platform
@@ -481,7 +480,7 @@ export function loadAppendStyle() {
         })
     }
     if(runtimeData.tags.isElectron && platform == 'linux') {
-        const gnomeExtInfo = runtimeData.reader?.invoke('sys:getGnomeExt')
+       /*  const gnomeExtInfo = runtimeData.reader?.invoke('sys:getGnomeExt')
         if(gnomeExtInfo) {
             gnomeExtInfo.then((info: any) => {
                 if(info['enable-all'] == 'true' || info['whitelist'].indexOf('stapxs-qq-lite') != -1) {
@@ -493,7 +492,7 @@ export function loadAppendStyle() {
                     })
                 }
             })
-        }
+        } */
     }
     // 全透明模式
     if(option.get('vibrancy_mode') != 'default') {
@@ -709,7 +708,7 @@ export function checkNotice() {
         })
 }
 
-export function BackendRequest(type: 'GET' | 'POST', url: string, cookies: string[], data: any = undefined) {
+/* export function BackendRequest(type: 'GET' | 'POST', url: string, cookies: string[], data: any = undefined) {
     if (runtimeData.reader) {
         runtimeData.reader.send('sys:requestHttp', {
             type: type,
@@ -718,7 +717,7 @@ export function BackendRequest(type: 'GET' | 'POST', url: string, cookies: strin
             data: data
         })
     }
-}
+} */
 
 export function loadJsonMap(name: string) {
     let msgPath = null as any

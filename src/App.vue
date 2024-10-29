@@ -248,11 +248,11 @@ export default defineComponent({
         /**
          * electron 窗口操作
          */
-        controllWin (name: string) {
+/*         controllWin (name: string) {
             if (runtimeData.reader) {
                 runtimeData.reader.send('win:' + name)
             }
-        },
+        }, */
         
         /**
          * 发起连接
@@ -361,9 +361,9 @@ export default defineComponent({
             Connector.send('get_system_msg', {}, 'getSystemMsg')
 
             // 清理通知
-            if(runtimeData.reader) {
+/*             if(runtimeData.reader) {
                 runtimeData.reader.send('sys:closeAllNotice', data.id)
-            }
+            } */
         },
 
         /**
@@ -485,8 +485,8 @@ export default defineComponent({
             window._AMapSecurityConfig =  process.env.VUE_APP_AMAP_SECRET
             // =========================================================================
             // 初始化功能
-            App.createMenu()            // Electron：创建菜单
-            App.createIpc()             // Electron：创建 IPC 通信
+/*             App.createMenu()            // Electron：创建菜单
+            App.createIpc()             // Electron：创建 IPC 通信 */
             // 加载开发者相关功能
             if (process.env.NODE_ENV == 'development') {
                 document.title = 'Stapxs QQ Lite (Dev)'

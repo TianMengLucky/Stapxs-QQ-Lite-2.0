@@ -1,36 +1,28 @@
 'use strict'
 
 import path from 'path'
-import Store from 'electron-store'
-import installExtension from 'electron-devtools-installer'
-
-import windowStateKeeper from 'electron-window-state'
 import packageInfo from '../package.json'
-import { noticeList, regIpcListener } from './function/electron/ipc'
-import { Menu, session, app, protocol, BrowserWindow } from 'electron'
-import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
-import { touchBar } from './function/electron/touchbar'
 import log4js from 'log4js'
 
-const isDevelopment = process.env.NODE_ENV !== 'production'
+/* const isDevelopment = process.env.NODE_ENV !== 'production'
 const isPrimary = app.requestSingleInstanceLock()
 const logger = log4js.getLogger('background')
 export let logLevel = isDevelopment ? 'debug' : 'info'
 
 protocol.registerSchemesAsPrivileged([
     { scheme: 'app', privileges: { secure: true, standard: true } }
-])
+]) */
 
-export let win = undefined as BrowserWindow | undefined
-export let touchBarInstance = undefined as touchBar | undefined
+/* export let win = undefined as BrowserWindow | undefined
+export let touchBarInstance = undefined as touchBar | undefined */
 
-async function createWindow() {
+/* async function createWindow() {
     if(new Store().get('opt_log_level')) {
         logLevel = (String) (new Store().get('opt_log_level')) ?? 'info'
     }
     logger.level = logLevel
 
-    /* eslint-disable no-console */
+    /* eslint-disable no-console
     console.log('')
     console.log(' _____ _____ _____ _____ __ __  \n' +
                 '|   __|_   _|  _  |  _  |  |  | \n' +
@@ -38,7 +30,7 @@ async function createWindow() {
                 '|_____| |_| |__|__|__|  |__|__| CopyRight © Stapx Steve')
     console.log('=======================================================')
     console.log('日志等级:', logLevel)
-    /* eslint-enable no-console */
+    /* eslint-enable no-console 
     logger.info('欢迎使用 Stapxs QQ Lite, 当前版本: ' + packageInfo.version)
     
     logger.info('启动平台架构：' + process.platform)
@@ -218,4 +210,4 @@ if (isDevelopment) {
             app.quit()
         })
     }
-}
+} */

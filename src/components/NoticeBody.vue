@@ -93,12 +93,12 @@ export default defineComponent({
     },
     async mounted() {
         let windowInfo = null as { x: number, y: number, width: number, height: number } | null
-        if(runtimeData.tags.isElectron) {
+/*         if(runtimeData.tags.isElectron) {
             const reader = runtimeData.reader
             if(reader) {
                 windowInfo = await reader.invoke('win:getWindowInfo')
             }
-        }
+        } */
         // 补全撤回者信息
         if (this.info.notice_type && this.info.notice_type.indexOf('recall') >= 0) {
             if (runtimeData.chatInfo.show.type === 'group') {
@@ -150,12 +150,12 @@ export default defineComponent({
                         // 取整
                         num = Math.round(num)
                         // 输出 translateX
-                        if(runtimeData.tags.isElectron && windowInfo) {
+/*                         if(runtimeData.tags.isElectron && windowInfo) {
                             const reader = runtimeData.reader
                             if(reader) {
                                 reader.send('win:move', { x: windowInfo.x + num, y: windowInfo.y })
                             }
-                        }
+                        } */
                     }
                 }
                 timeLine.changeComplete = () => {

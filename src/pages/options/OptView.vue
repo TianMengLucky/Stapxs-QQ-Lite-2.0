@@ -262,9 +262,9 @@ export default defineComponent({
         },
 
         restartapp() {
-            if (runtimeData.reader) {
+/*             if (runtimeData.reader) {
                 runtimeData.reader.send('win:relaunch')
-            }
+            } */
         },
         
         isMobile() {

@@ -6,14 +6,11 @@
   "description": "一个兼容 OneBot 的非官方网页版 QQ 客户端，使用 Vue 重制的全新版本。",
   "scripts": {
     "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "clear": "rm -rf dist && rm -rf dist_electron",
-    "lint:fix": "vue-cli-service lint --fix",
-    "electron:build": "vue-cli-service electron:build",
-    "electron:serve": "vue-cli-service electron:serve",
-    "postinstall": "electron-builder install-app-deps",
-    "postuninstall": "electron-builder install-app-deps"
+    "clear": "rm -rf dist",
+    "lint:fix": "vue-cli-service lint --fix"
   },
   "dependencies": {
     "@jakejarrett/gtk-theme": "^2.0.1",
@@ -25,14 +22,12 @@
     "core-js": "^3.8.3",
     "css": "^3.0.0",
     "detect-browser": "^5.3.0",
-    "electron-store": "^8.1.0",
-    "electron-window-state": "^5.0.3",
     "gettext-parser": "^8.0.0",
     "js-file-downloader": "^1.1.24",
     "js-yaml-loader": "^1.2.2",
     "jsonpath": "^1.1.1",
     "log4js": "^6.9.1",
-    "pinyin": "^3.0.0-alpha.4",
+    "pinyin": "3.1",
     "prismjs": "^1.29.0",
     "raw-loader": "^4.0.2",
     "register-service-worker": "^1.7.2",
@@ -53,9 +48,9 @@
     "xss": "^1.0.14"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^2.0.4",
     "@types/animejs": "^3.1.12",
     "@types/css": "^0.0.33",
-    "@types/electron-devtools-installer": "^2.2.0",
     "@types/gettext-parser": "^4.0.4",
     "@types/jsonpath": "^0.2.3",
     "@types/semver-compare": "^1.0.3",
@@ -68,11 +63,8 @@
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
     "child_process": "^1.0.2",
-    "electron": "^27.0.0",
-    "electron-devtools-installer": "^3.2.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
-    "typescript": "^4.5.5",
-    "vue-cli-plugin-electron-builder": "^3.0.0-alpha.4"
+    "typescript": "^4.5.5"
   }
 }

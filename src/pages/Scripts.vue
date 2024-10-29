@@ -252,7 +252,7 @@ export default defineComponent({
             }
         })
         // 读取保存的脚本
-        this.savedList = getRaw('scripts') ? JSON.parse(decodeURIComponent(getRaw('scripts'))) : []
+        this.savedList = /* getRaw('scripts') ? JSON.parse(decodeURIComponent(getRaw('scripts'))) :  */[]
         // 读取内嵌脚本
         for (const scriptInfo of sysScriptsList) {
             const title = scriptInfo.title

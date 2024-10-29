@@ -14,7 +14,7 @@ import { LogType, Logger, PopType, PopInfo  } from './base'
 import { parse, runtimeData } from './msg'
 
 import { BotActionElem, LoginCacheElem } from './elements/system'
-import { updateMenu } from '@/function/utils/appUtil'
+/* import { updateMenu } from '@/function/utils/appUtil' */
 
 const logger = new Logger()
 const popInfo = new PopInfo()
@@ -33,14 +33,14 @@ export class Connector {
         const $t = app.config.globalProperties.$t
 
         // Electron 默认使用后端连接模式
-        if(runtimeData.tags.isElectron) {
+/*         if(runtimeData.tags.isElectron) {
             logger.add(LogType.WS, '使用后端连接模式')
             const reader = runtimeData.reader
             if(reader) {
                 reader.send('onebot:connect', { address: address, token: token })
                 return
             }
-        }
+        } */
 
         // PS：只有在未设定 wss 类型的情况下才认为是首次连接
         if(wss == undefined) retry = 0; else retry ++
@@ -103,11 +103,11 @@ export class Connector {
         // PS：标记登陆成功在获取用户信息的回调位置，防止无法获取到内容
         Connector.send('get_version_info', {}, 'getVersionInfo')
         // 更新菜单
-        updateMenu({
+/*         updateMenu({
             id: 'logout',
             action: 'visible',
             value: true
-        })
+        }) */
     }
 
     static onmessage(message: string) {
@@ -118,7 +118,7 @@ export class Connector {
         const $t = app.config.globalProperties.$t
 
         websocket = undefined
-        updateMenu({
+/*         updateMenu({
             id: 'logout',
             action: 'visible',
             value: false
@@ -127,7 +127,7 @@ export class Connector {
             id: 'userName',
             action: 'label',
             value: $t('连接')
-        })
+        }) */
 
         switch (code) {
             case 1000: break;   // 正常关闭
@@ -161,10 +161,10 @@ export class Connector {
      */
     static close() {
         if(runtimeData.tags.isElectron) {
-            const reader = runtimeData.reader
+/*             const reader = runtimeData.reader
             if(reader) {
                 reader.send('onebot:close')
-            }
+            } */
         } else {
             popInfo.add(PopType.INFO, app.config.globalProperties.$t('正在断开链接……'))
             if(websocket) websocket.close(1000)
@@ -185,10 +185,10 @@ export class Connector {
     static sendRaw(json: string) {
         // 发送
         if(runtimeData.tags.isElectron) {
-            const reader = runtimeData.reader
+/*             const reader = runtimeData.reader
             if(reader) {
                 reader.send('onebot:send', json)
-            }
+            } */
         } else {
             if(websocket) websocket.send(json)
         }

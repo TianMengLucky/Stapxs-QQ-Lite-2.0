@@ -17,7 +17,7 @@ import { i18n } from '@/main'
 import { markRaw, defineAsyncComponent } from 'vue'
 import { Logger, LogType, PopInfo, PopType } from './base'
 import { runtimeData } from './msg'
-import { loadSystemThemeColor, loadWinColor, sendStatEvent, updateWinColor } from '@/function/utils/appUtil'
+import { /* loadSystemThemeColor, loadWinColor, */ sendStatEvent, updateWinColor } from '@/function/utils/appUtil'
 import { getPortableFileLang, getTrueLang } from '@/function/utils/systemUtil'
 
 let cacheConfigs: { [key: string]: any }
@@ -48,17 +48,17 @@ const configFunction: { [key: string]: (value: any) => void } = {
     chatview_name: changeChatView,
     initial_scale: changeInitialScale,
     msg_type: setMsgType,
-    opt_auto_gtk: updateGTKColor,
-    opt_auto_win_color: updateWinColorOpt,
-    opt_revolve: viewRevolve,
-    opt_always_top: viewAlwaysTop,
+/*     opt_auto_gtk: updateGTKColor,
+    opt_auto_win_color: updateWinColorOpt, */
+    opt_revolve: viewRevolve/* ,
+    opt_always_top: viewAlwaysTop, */
 }
 
-function viewAlwaysTop(value: boolean) {
+/* function viewAlwaysTop(value: boolean) {
     if(runtimeData.reader) {
         runtimeData.reader.send('win:alwaysTop', value)
     }
-}
+} */
 
 function viewRevolve(value: boolean) {
     const baseApp = document.getElementById('base-app')
@@ -74,7 +74,7 @@ function viewRevolve(value: boolean) {
     }
 }
 
-function updateWinColorOpt(value: boolean) {
+/* function updateWinColorOpt(value: boolean) {
     if(value == true) {
         if (runtimeData.reader) {
             runtimeData.reader.on('sys:WinColorChanged', (event, params) => {
@@ -89,7 +89,7 @@ function updateGTKColor(value: boolean) {
     if(value == true) {
         loadSystemThemeColor()
     }
-}
+} */
 
 function setMsgType(value: any) {
     if(value) {
@@ -283,10 +283,10 @@ function changeChatView(name: string | undefined) {
  * @returns 设置项集合
  */
 export function load(): { [key: string]: any } {
-    let data = {} as { [key: string]: any }
+    const data = {} as { [key: string]: any }
 
     if (runtimeData.reader) {
-        data = runtimeData.reader.sendSync('opt:getAll')
+/*         data = runtimeData.reader.sendSync('opt:getAll') */
     } else {
         const str = localStorage.getItem('options')
         if (str != null) {
@@ -374,9 +374,9 @@ export function get(name: string): any {
  * @returns 设置项值（如果没有则为 null）
  */
 export function getRaw(name: string) {
-    if (runtimeData.reader) {
+/*     if (runtimeData.reader) {
         return runtimeData.reader.sendSync('opt:get', name)
-    } else {
+    } else  */{
         // 解析拆分 cookie 并执行各个设置项的初始化方法
         const str = localStorage.getItem('options')
         if (str != null) {
@@ -418,14 +418,14 @@ export function saveAll(config = {} as {[key: string]: any}) {
     localStorage.setItem('options', str)
 
     // electron：将配置保存
-    if(runtimeData.reader) {
+/*     if(runtimeData.reader) {
         const saveConfig = config
         Object.keys(config).forEach(key => {
             const isObject = typeof config[key] == 'object'
             saveConfig[key] = isObject ? JSON.stringify(config[key]) : config[key]
         })
         runtimeData.reader.send('opt:saveAll', saveConfig)
-    }
+    } */
 }
 
 /**
@@ -498,9 +498,9 @@ export function runASWEvent(event: Event) {
                     text: app.config.globalProperties.$t('确定'),
                     fun: () => {
                         if(runtimeData.tags.isElectron) {
-                            if (runtimeData.reader) {
+/*                             if (runtimeData.reader) {
                                 runtimeData.reader.send('win:relaunch')
-                            }
+                            } */
                         } else {
                             location.reload()
                         }

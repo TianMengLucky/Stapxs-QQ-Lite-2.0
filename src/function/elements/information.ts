@@ -3,7 +3,7 @@ export enum BotMsgType {
 }
 
 export interface RunTimeDataElem {
-    reader?: Electron.IpcRenderer | null,
+    reader?: null,
     sysConfig: { [key: string]: any }
     jsonMap?: any
     botInfo: { [key: string]: any }
