@@ -3,7 +3,6 @@ export enum BotMsgType {
 }
 
 export interface RunTimeDataElem {
-    reader?: null,
     sysConfig: { [key: string]: any }
     jsonMap?: any
     botInfo: { [key: string]: any }
@@ -27,9 +26,9 @@ export interface RunTimeDataElem {
             index: number
         },
         loginWaveTimer?: any,
-        isElectron: boolean,
+        isTarui: boolean,
         platform: string | undefined,
-        release: string | undefined,
+        version: string | undefined,
         connectSsl: boolean,
         classes: any[],
         sw?: boolean,

@@ -1,15 +1,7 @@
 <template>
-    <div v-if="dev" class="dev-bar">
-            {{ 'Stapxs QQ Lite Development Mode' }}
-            {{ ' / fps: ' + fps.value }}
-    </div>
     <div class="top-bar" name="appbar" v-if="runtimeData.sysConfig.opt_no_window">
         <div class="bar-button" @click="barMainClick()"></div>
         <div class="space"></div>
-        <div class="controller">
-            <div @click="controllWin('minimize')" class="min"><font-awesome-icon :icon="['fas', 'minus']" /></div>
-            <div @click="controllWin('close')" class="close"><font-awesome-icon :icon="['fas', 'xmark']" /></div>
-        </div>
     </div>
     <div v-if="runtimeData.tags.platform == 'darwin'" class="controller mac-controller"></div>
     <div id="base-app">
@@ -206,6 +198,7 @@ import Options from '@/pages/Options.vue'
 import Friends from '@/pages/Friends.vue'
 import Messages from '@/pages/Messages.vue'
 import Chat from '@/pages/Chat.vue'
+import { platform } from '@tauri-apps/plugin-os'
 
 export default defineComponent({
     name: 'App',
@@ -465,19 +458,17 @@ export default defineComponent({
         }
     },
     mounted () {
+    
         const logger = new Logger()
         window.moYu = () => { return 'undefined' }
         // 页面加载完成后
         window.onload = async () => {
             // 初始化全局参数
-            runtimeData.tags.isElectron = (process.env.IS_ELECTRON as unknown) as boolean && window.require != undefined
-            const electron = runtimeData.tags.isElectron ? window.require('electron') : null
-            const reader = electron ? electron.ipcRenderer : null
-            runtimeData.reader = reader
-            if (reader) {
-                runtimeData.tags.platform = await reader.invoke('sys:getPlatform')
-                runtimeData.tags.release = await reader.invoke('sys:getRelease')
+            if (runtimeData.tags.isTarui)
+            {
+                runtimeData.tags.platform = platform() ?? undefined;
             }
+            
             app.config.globalProperties.$viewer = this.viewerBody
             // 初始化波浪动画
             runtimeData.tags.loginWaveTimer = this.waveAnimation(document.getElementById('login-wave'))
@@ -531,8 +522,8 @@ export default defineComponent({
                     baseUrl: process.env.VUE_APP_MU_ADDRESS,
                     websiteId: process.env.VUE_APP_MU_ID
                 } as any
-                if(runtimeData.tags.isElectron) {
-                    config.hostName = 'electron.stapxs.cn'
+                if(runtimeData.tags.isTarui) {
+                    config.hostName = 'Tarui.stapxs.cn'
                 }
                 Umami.initialize(config)
             } else if (process.env.NODE_ENV == 'development') {

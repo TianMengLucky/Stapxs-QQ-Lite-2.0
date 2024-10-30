@@ -285,8 +285,8 @@ function changeChatView(name: string | undefined) {
 export function load(): { [key: string]: any } {
     const data = {} as { [key: string]: any }
 
-    if (runtimeData.reader) {
-/*         data = runtimeData.reader.sendSync('opt:getAll') */
+/*     if (runtimeData.reader) {
+/*         data = runtimeData.reader.sendSync('opt:getAll') 
     } else {
         const str = localStorage.getItem('options')
         if (str != null) {
@@ -297,6 +297,19 @@ export function load(): { [key: string]: any } {
                     if (opt.length === 2) {
                         data[opt[0]] = opt[1]
                     }
+                }
+            }
+        }
+    } */
+
+    const str = localStorage.getItem('options')
+    if (str != null) {
+        const list = str.split('&')
+        for (let i = 0; i <= list.length; i++) {
+            if (list[i] !== undefined) {
+                const opt: string[] = list[i].split(':')
+                if (opt.length === 2) {
+                    data[opt[0]] = opt[1]
                 }
             }
         }
@@ -497,13 +510,14 @@ export function runASWEvent(event: Event) {
                 {
                     text: app.config.globalProperties.$t('确定'),
                     fun: () => {
-                        if(runtimeData.tags.isElectron) {
+/*                         if(runtimeData.tags.isElectron) {
 /*                             if (runtimeData.reader) {
                                 runtimeData.reader.send('win:relaunch')
-                            } */
+                            } 
                         } else {
                             location.reload()
-                        }
+                        } */
+                        location.reload()
                     }
                 },
                 {

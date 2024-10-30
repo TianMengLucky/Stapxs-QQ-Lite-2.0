@@ -393,7 +393,7 @@ export default defineComponent({
     },
     mounted() {
         library.add(faCheckToSlot, faThumbTack, faTrashCan, faGripLines)
-        if(runtimeData.tags.isElectron && runtimeData.reader) {
+/*         if(runtimeData.tags.isElectron && runtimeData.reader) {
             this.$watch(() => runtimeData.onMsgList.length, () => {
                 new Logger().add(LogType.UI, 'flush touch bar: ' + runtimeData.onMsgList.length)
                 const list = [] as {
@@ -408,9 +408,9 @@ export default defineComponent({
                         image: item.user_id ? 'https://q1.qlogo.cn/g?b=qq&s=0&nk=' + item.user_id : 'https://p.qlogo.cn/gh/' + item.group_id + '/' + item.group_id + '/0'
                     })
                 })
-                /* runtimeData.reader?.send('sys:flushTouchBar', list) */
+                /* runtimeData.reader?.send('sys:flushTouchBar', list)
             })
-        }
+        } */
     }
 })
 </script>

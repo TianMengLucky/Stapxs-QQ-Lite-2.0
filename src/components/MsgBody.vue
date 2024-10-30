@@ -116,7 +116,7 @@
         <div :class="'emoji-like' + (isMe ? ' me' : '')" v-if="data.emoji_like">
             <div class="emoji-like-body">
                 <div v-for="info in data.emoji_like" v-show="getFace(info.emoji_id) != false" :key="'respond-' + data.message_id + '-' + info.emoji_id">
-                    <img loading="lazy" :src="(getFace(info.emoji_id) as any)">
+                    <img loading="lazy" :src="(getFace(info.emoji_id))">
                     <span>{{ info.count }}</span>
                 </div>
             </div>

@@ -133,7 +133,7 @@
                         $t('执行')
                 }}</button>
             </div>
-            <template v-if="runtimeData.tags.isElectron">
+<!--             <template v-if="runtimeData.tags.isElectron">
                 <div class="opt-item">
                     <font-awesome-icon :icon="['fas', 'power-off']" />
                     <div>
@@ -144,7 +144,7 @@
                         $t('执行')
                 }}</button>
                 </div>
-            </template>
+            </template> -->
         </div>
         <div class="ss-card">
             <header>{{ $t('维护与备份') }}</header>
@@ -262,7 +262,7 @@ export default defineComponent({
                 })
             }
             // 获取安装信息，这儿主要判断几种已提交的包管理安装方式
-            if(runtimeData.tags.isElectron && runtimeData.reader && runtimeData.tags.release) {
+            /* if(runtimeData.tags.isElectron && runtimeData.reader && runtimeData.tags.release) {
                 switch(process.platform) {
                     case 'darwin': {
                         // PS：在 macOS 下因为严格的进程权限，子线程环境无法获取到 brew 信息
@@ -288,12 +288,12 @@ export default defineComponent({
                                 if(pacmanInfo.success) {
                                     info += '    Install Type     -> pacman\n'
                                 }
-                            } */
+                            } 
                         }
                         break;
                     }
                 }
-            }
+            } */
 
             info += 'Application Info:\n'
             info += `    Uptime           -> ${Math.floor((new Date().getTime() - uptime) / 1000 * 100) / 100} s\n` 

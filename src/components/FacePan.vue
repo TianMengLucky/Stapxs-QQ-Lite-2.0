@@ -14,7 +14,7 @@
                         v-show="getFace(num) != false"
                         :key="'base-face-' + num"
                         @click="addBaseFace(num)">
-                        <img loading="lazy" :src="(getFace(num) as any)">
+                        <img loading="lazy" :src="(getFace(num))">
                     </div>
                 </div>
             </div>

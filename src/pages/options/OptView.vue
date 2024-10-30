@@ -78,7 +78,7 @@
                     </div>
                 </template>
             </template>
-            <template v-if="runtimeData.tags.isElectron && browser.os == 'Linux'">
+            <!-- <template v-if="runtimeData.tags.isElectron && browser.os == 'Linux'">
                 <div class="opt-item">
                     <font-awesome-icon :icon="['fas', 'window-restore']" />
                     <div>
@@ -93,8 +93,8 @@
                         </div>
                     </label>
                 </div>
-            </template>
-            <template v-if="runtimeData.tags.isElectron && browser.os != 'Linux'">
+            </template> -->
+            <!-- <template v-if="runtimeData.tags.isElectron && browser.os != 'Linux'">
                 <div class="opt-item">
                     <font-awesome-icon :icon="['fas', 'wand-magic-sparkles']" />
                     <div>
@@ -109,7 +109,7 @@
                         </div>
                     </label>
                 </div>
-            </template>
+            </template> -->
             <div class="opt-item">
                 <font-awesome-icon :icon="['fas', 'table-columns']" />
                 <div>
@@ -141,7 +141,7 @@
                     <span :style="`color: var(--color-font${runtimeData.sysConfig.chat_background_blur > 50 ? '-r' : ''})`">{{ runtimeData.sysConfig.chat_background_blur }} px</span>
                 </div>
             </div>
-            <div class="opt-item" v-if="runtimeData.tags.isElectron && browser.os != 'Linux'">
+           <!--  <div class="opt-item" v-if="runtimeData.tags.isElectron && browser.os != 'Linux'">
                 <font-awesome-icon :icon="['fas', 'border-none']" />
                 <div>
                     <span>{{ $t('窗口透明模式') }}</span>
@@ -152,7 +152,7 @@
                     <option value="vibrancy">{{ $t('完整模糊') }}</option>
                     <option value="transparent">{{ $t('完整透明') }}</option>
                 </select>
-            </div>
+            </div> -->
         </div>
         <div class="ss-card">
             <header>{{ $t('页面') }}</header>
@@ -178,7 +178,7 @@
                     <span :style="`color: var(--color-font${fsAdaptationShow / 50 > 0.5 ? '-r' : ''})`">{{ fsAdaptationShow }} px</span>
                 </div>
             </div>
-            <div class="opt-item" v-if="runtimeData.tags.isElectron">
+<!--             <div class="opt-item" v-if="runtimeData.tags.isElectron">
                 <font-awesome-icon :icon="['fas', 'angle-up']" />
                 <div>
                     <span>{{ $t('置顶窗口') }}</span>
@@ -191,7 +191,7 @@
                         <div></div>
                     </div>
                 </label>
-            </div>
+            </div> -->
             <div class="opt-item">
                 <font-awesome-icon :icon="['fas', 'arrows-rotate']" />
                 <div>

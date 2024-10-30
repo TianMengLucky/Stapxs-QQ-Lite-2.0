@@ -59,7 +59,7 @@ export function scrollToMsg (seqName: string, showAnimation: boolean): boolean {
  */
 export function openLink(url: string, external = false) {
     // 判断是不是 Electron，是的话打开内嵌 iframe
-    if(runtimeData.tags.isElectron) {
+/*     if(runtimeData.tags.isElectron) {
         if(!external) {
             runtimeData.popBoxList = []
             const popInfo = {
@@ -76,7 +76,7 @@ export function openLink(url: string, external = false) {
 /*                             const shell = null
                             if (shell) {
                                 shell.openExternal(url)
-                            } */
+                            } 
                             runtimeData.popBoxList.shift()
                         }
                     },
@@ -94,10 +94,11 @@ export function openLink(url: string, external = false) {
             if (shell) {
                 shell.openExternal(url)
             }
-        } */
+        } 
     } else {
         window.open(url)
-    }
+    } */
+   window.open(url)
 }
 
 /**
@@ -210,7 +211,7 @@ export function downloadFile (url: string, name: string, onprocess: (event: Prog
             url = 'https' + url.substring(url.indexOf('://'))
         }
     }
-    if(runtimeData.tags.isElectron) {
+/*     if(runtimeData.tags.isElectron) {
         new FileDownloader({
             url: url,
             autoStart: true,
@@ -228,8 +229,8 @@ export function downloadFile (url: string, name: string, onprocess: (event: Prog
                 downloadPath: url,
                 fileName: name
             })
-        } */
-    }
+        } 
+    } */
 }
 
 /**
@@ -460,11 +461,11 @@ export function createIpc() {
 export function loadAppendStyle() {
     const platform = runtimeData.tags.platform
     logger.info('正在装载补充样式……')
-    if (runtimeData.tags.isElectron) {
+/*     if (runtimeData.tags.isElectron) {
         import('@/assets/css/append/append_new.css').then(() => {
             logger.info('UI 2.0 附加样式加载完成')
         })
-    }
+    } */
     try {
         import(`@/assets/css/append/append_${platform}.css`).then(() => {
             logger.info(`${platform} 平台附加样式加载完成`)
@@ -472,7 +473,7 @@ export function loadAppendStyle() {
     } catch (e) {
         logger.info('未找到对应平台的附加样式')
     }
-    let subVersion = runtimeData.tags.release?.split('.') as any
+/*     let subVersion = runtimeData.tags.release?.split('.') as any
     subVersion = subVersion ? Number(subVersion[2]) : 0
     if (runtimeData.tags.isElectron && (platform == 'darwin' || (platform == 'win32' && subVersion > 22621))) {
         import('@/assets/css/append/append_vibrancy.css').then(() => {
@@ -492,8 +493,8 @@ export function loadAppendStyle() {
                     })
                 }
             })
-        } */
-    }
+        } 
+    } */
     // 全透明模式
     if(option.get('vibrancy_mode') != 'default') {
         import('@/assets/css/append/append_full_transparent.css').then(() => {
@@ -565,7 +566,7 @@ function showReleaseLog(data: any, isUpdated: boolean) {
         message: msg,
         updated: isUpdated
     }
-    const buttonGoUpdate = runtimeData.tags.isElectron ? [
+    const buttonGoUpdate = /* runtimeData.tags.isElectron ? [
         {
             text: $t('知道了'),
             fun: () => runtimeData.popBoxList.shift()
@@ -574,7 +575,7 @@ function showReleaseLog(data: any, isUpdated: boolean) {
             master: true,
             fun: () => openLink(data.html_url, true)
         }
-    ] : [
+    ] :  */[
         {
             text: $t('查看…'),
             fun: () => openLink(data.html_url)

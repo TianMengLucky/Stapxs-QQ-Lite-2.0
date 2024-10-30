@@ -5,9 +5,9 @@
   "identifier": "com.tauri.dev",
   "build": {
     "frontendDist": "../dist",
-    "devUrl": "http://localhost:8080",
-    "beforeDevCommand": "yarn dev",
-    "beforeBuildCommand": "yarn build"
+    "devUrl": "http://192.168.2.65:8080",
+    "beforeDevCommand": "yarn dev && IS_TARUI=true",
+    "beforeBuildCommand": "yarn build && IS_TARUI=true"
   },
   "app": {
     "windows": [

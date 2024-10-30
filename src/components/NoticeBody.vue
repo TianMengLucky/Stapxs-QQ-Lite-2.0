@@ -45,6 +45,7 @@ import { defineComponent, ref } from 'vue'
 import { runtimeData } from '@/function/msg'
 import { getTimeConfig, getTrueLang } from '@/function/utils/systemUtil'
 
+
 export default defineComponent({
     name: 'NoticeBody',
     props: ['data', 'id'],
@@ -99,6 +100,8 @@ export default defineComponent({
                 windowInfo = await reader.invoke('win:getWindowInfo')
             }
         } */
+
+    
         // 补全撤回者信息
         if (this.info.notice_type && this.info.notice_type.indexOf('recall') >= 0) {
             if (runtimeData.chatInfo.show.type === 'group') {
@@ -124,10 +127,10 @@ export default defineComponent({
         if(this.info.sub_type === 'poke' && this.info.pokeMe) {
             // 给 body 创建一个三段的动画
             let item = document.getElementById('app')
-            if(runtimeData.tags.isElectron) {
+/*             if(runtimeData.tags.isElectron) {
                 item = document.getElementById('notice-' + this.id)
                         ?.getElementsByClassName('space')[0] as HTMLElement
-            }
+            } */
             if(item) {
                 const timeLine = anime.timeline({ targets: item })
                 // 如果窗口小于 500px 播放完整的动画（手机端样式）

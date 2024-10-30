@@ -160,7 +160,7 @@ export class Connector {
      * 正常断开 Websocket 连接
      */
     static close() {
-        if(runtimeData.tags.isElectron) {
+        if(runtimeData.tags.isTarui) {
 /*             const reader = runtimeData.reader
             if(reader) {
                 reader.send('onebot:close')
@@ -184,7 +184,7 @@ export class Connector {
     }
     static sendRaw(json: string) {
         // 发送
-        if(runtimeData.tags.isElectron) {
+        if(runtimeData.tags.isTarui) {
 /*             const reader = runtimeData.reader
             if(reader) {
                 reader.send('onebot:send', json)

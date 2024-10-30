@@ -326,7 +326,7 @@
                     v-show="tags.menuDisplay.showRespond"
                     :class="'ss-card respond' + (tags.menuDisplay.respond ? ' open': '')">
                     <template v-for="(num, index) in respondIds" :key="'respond-' + num">
-                        <img v-if="getFace(num) != false" @click="sendRespond(num)" loading="lazy" :src="(getFace(num) as any)">
+                        <img v-if="getFace(num) != false" @click="sendRespond(num)" loading="lazy" :src="(getFace(num))">
                         <font-awesome-icon  v-if="index == 4" @click="tags.menuDisplay.respond = true" :icon="['fas', 'angle-up']" />
                     </template>
                 </div>
